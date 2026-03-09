@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body { font-family: Arial, sans-serif; color: #222; }
+      .container { padding: 12px; }
+      .meta { color: #666; font-size: 13px; }
+      .field { margin-bottom: 12px; }
+      .label { font-weight: bold; }
+      .value { margin-top: 4px; }
+      .footer { margin-top: 18px; color: #999; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>New contact form submission</h2>
+      <p class="meta">Submitted at: {{ created_at }}</p>
+
+      <div class="field">
+        <div class="label">Name</div>
+        <div class="value">{{ name }}</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Email</div>
+        <div class="value">{{ email }}</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Phone</div>
+        <div class="value">{{ phone }}</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Subject</div>
+        <div class="value">{{ subject }}</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Message</div>
+        <div class="value">{{ message|linebreaksbr }}</div>
+      </div>
+
+      <div class="footer">
+        This notification was generated automatically by Syntheseed website.
+      </div>
+    </div>
+  </body>
+</html>
