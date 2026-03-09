@@ -17,11 +17,14 @@ except FileNotFoundError:
     SECRETS = {}
 
 def get_secret(key, default=None):
-    """Return secret value for `key`. If not found, return `default` (if provided)
-    otherwise raise ImproperlyConfigured.
+    """Return secret value from secrets.json, then os.environ, then default.
+    Raises ImproperlyConfigured if none found and no default provided.
     """
     if key in SECRETS:
         return SECRETS[key]
+    env_val = os.environ.get(key)
+    if env_val is not None:
+        return env_val
     if default is not None:
         return default
     raise ImproperlyConfigured(f"Missing required secret: {key}")

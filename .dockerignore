@@ -1,0 +1,40 @@
+# Frontend
+node_modules/
+dist/
+src/
+public/
+index.html
+package.json
+bun.lock
+bun.lockb
+package-lock.json
+vite.config.ts
+tsconfig*.json
+postcss.config.js
+tailwind.config.ts
+eslint.config.js
+components.json
+playwright.config.ts
+playwright-fixture.ts
+vitest.config.ts
+
+# Assets (frontend design files)
+assets/
+
+# Git
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+
+# Secrets (injected via env vars in App Runner)
+secrets.json
+
+# Docker
+Dockerfile
+.dockerignore

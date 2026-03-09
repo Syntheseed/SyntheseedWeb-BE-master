@@ -1,0 +1,27 @@
+# AWS App Runner configuration
+# https://docs.aws.amazon.com/apprunner/latest/dg/config-file.html
+version: 1.0
+runtime: python311
+
+build:
+  commands:
+    pre-build:
+      - pip install -r requirements.txt
+    build:
+      - python manage.py collectstatic --noinput
+
+run:
+  command: gunicorn company_backend.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
+  network:
+    port: 8000
+  env:
+    # These are placeholders — set actual values in the App Runner console
+    # or via AWS CLI / CloudFormation.
+    - name: DJANGO_SETTINGS_MODULE
+      value: company_backend.settings
+    - name: PYTHONUNBUFFERED
+      value: "1"
+    # Required (configure in App Runner console):
+    # SECRET_KEY, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+    # Optional: AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID,
+    #           AZURE_SENDER_UPN, DEFAULT_FROM_EMAIL, NOTIFY_CONTACT_RECIPIENTS
