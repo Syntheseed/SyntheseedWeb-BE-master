@@ -22,9 +22,13 @@ run:
     - name: PYTHONUNBUFFERED
       value: "1"
     # Required (configure in App Runner console):
-    - DB_NAME: "syntheseeddb"
-    - DB_USER: "postgresAdmin"
-    - DB_HOST: "webdb.ch208ekk2bx2.us-east-1.rds.amazonaws.com"
-    - DB_PORT: "5432"
+    - name: DB_NAME
+      value: "syntheseeddb"
+    - name: DB_USER
+      value: "postgresAdmin"
+    - name: DB_HOST
+      value: "webdb.ch208ekk2bx2.us-east-1.rds.amazonaws.com"
+    - name: DB_PORT
+      value: "5432"
     # Optional: AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, AZURE_TENANT_ID,
     #           AZURE_SENDER_UPN, DEFAULT_FROM_EMAIL, NOTIFY_CONTACT_RECIPIENTS
