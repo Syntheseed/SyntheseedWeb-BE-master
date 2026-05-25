@@ -6,7 +6,7 @@ runtime: python311
 build:
   commands:
     pre-build:
-      - pip install -r requirements.txt
+      - python -m pip install -r requirements.txt
     build:
       - python manage.py collectstatic --noinput 2>/dev/null || true
 
