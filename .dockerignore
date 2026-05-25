@@ -32,7 +32,8 @@ __pycache__/
 .venv/
 env/
 
-# Secrets (injected via env vars in App Runner)
+# Secrets (injected via env vars at runtime)
+.env
 secrets.json
 
 # Docker

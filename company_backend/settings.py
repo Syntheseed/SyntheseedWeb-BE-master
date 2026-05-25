@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 import json
 import sys
 from django.core.exceptions import ImproperlyConfigured
@@ -16,7 +16,9 @@ try:
 except FileNotFoundError:
     SECRETS = {}
 
-def get_secret(key, default=None):
+_MISSING = object()
+
+def get_secret(key, default=_MISSING):
     """Return secret value from secrets.json, then os.environ, then default.
     Raises ImproperlyConfigured if none found and no default provided.
     """
@@ -25,14 +27,17 @@ def get_secret(key, default=None):
     env_val = os.environ.get(key)
     if env_val is not None:
         return env_val
-    if default is not None:
+    if default is not _MISSING:
         return default
     raise ImproperlyConfigured(f"Missing required secret: {key}")
 
 # Secret key (prefer secrets.json)
 SECRET_KEY = get_secret('SECRET_KEY', 'django-insecure-your-secret-key')
 DEBUG = get_secret('DEBUG', 'False').lower() == 'true' if isinstance(get_secret('DEBUG', 'False'), str) else bool(get_secret('DEBUG', False))
-ALLOWED_HOSTS = get_secret('ALLOWED_HOSTS', 'syntheseed.com,www.syntheseed.com,127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = get_secret(
+    'ALLOWED_HOSTS',
+    'syntheseed.com,www.syntheseed.com,127.0.0.1,localhost,' + get_secret('ECS_HOST', '')
+).split(',')
 
 
 # Installed apps
