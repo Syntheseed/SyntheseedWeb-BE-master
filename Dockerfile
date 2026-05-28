@@ -35,9 +35,11 @@ ENV PYTHONUNBUFFERED=1
 # Collect static files at build time
 RUN python manage.py collectstatic --noinput 2>/dev/null || true
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD ["gunicorn", "company_backend.wsgi:application", \
-     "--bind", "0.0.0.0:8000", \
-     "--workers", "3", \
-     "--timeout", "120"]
+USER root
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
