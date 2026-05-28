@@ -121,9 +121,10 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/syntheseedbe/company_backend/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = "/media/"
-MEDIA_ROOT ='/var/www/syntheseedbe/company_backend/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 BASE_BACKEND_URL = "http://127.0.0.1:8000"
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
